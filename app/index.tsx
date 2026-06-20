@@ -8,12 +8,12 @@ export default function WelcomeScreen() {
         <YStack bg="$blue4" p="$5" rounded="$9">
           <Wrench size={44} color="$blue10" />
         </YStack>
-        <YStack items="center" gap="$2">
+        <YStack items="center" gap="$4">
           <H1 fontWeight="900" letterSpacing={-1}>
             TaskTap
           </H1>
-          <Paragraph size="$5" color="$color10" text="center" maxW={300}>
-            Report and track maintenance issues in your space — fast.
+          <Paragraph size="$4" color="$color10" text="center" maxW={300}>
+            Report and track maintenance issues in your space - fast.
           </Paragraph>
         </YStack>
       </YStack>
