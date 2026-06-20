@@ -10,13 +10,19 @@
   },
   "dependencies": {
     "@expo/metro-runtime": "~55.0.11",
+    "@tamagui/babel-plugin": "^2.3.1",
+    "@tamagui/config": "^2.3.1",
+    "@tamagui/font-inter": "^2.3.1",
+    "@tamagui/lucide-icons-2": "^2.3.1",
+    "@tamagui/react-native-web-internals": "^2.3.1",
     "expo": "~55.0.26",
     "expo-constants": "~55.0.16",
     "expo-linking": "~55.0.15",
     "expo-router": "~55.0.16",
     "expo-status-bar": "~55.0.6",
     "react": "19.2.0",
-    "react-native": "0.83.6"
+    "react-native": "0.83.6",
+    "tamagui": "^2.3.1"
   },
   "devDependencies": {
     "@types/react": "~19.2.2",
