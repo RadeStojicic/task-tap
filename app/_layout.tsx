@@ -1,5 +1,10 @@
 import { Slot } from "expo-router";
+import { Provider } from "../components/Provider";
 
 export default function Layout() {
-  return <Slot />;
+  return (
+    <Provider>
+      <Slot />
+    </Provider>
+  );
 }
