@@ -1,7 +1,7 @@
 {
   "name": "task-tap",
   "version": "1.0.0",
-  "main": "index.ts",
+  "main": "expo-router/entry",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
@@ -9,7 +9,11 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@expo/metro-runtime": "~55.0.11",
     "expo": "~55.0.26",
+    "expo-constants": "~55.0.16",
+    "expo-linking": "~55.0.15",
+    "expo-router": "~55.0.16",
     "expo-status-bar": "~55.0.6",
     "react": "19.2.0",
     "react-native": "0.83.6"
