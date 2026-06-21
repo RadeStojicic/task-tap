@@ -18,6 +18,7 @@
     "@tamagui/lucide-icons-2": "^2.3.1",
     "@tamagui/react-native-web-internals": "^2.3.1",
     "base64-arraybuffer": "^1.0.2",
+    "burnt": "^0.13.0",
     "expo": "~55.0.26",
     "expo-constants": "~55.0.16",
     "expo-image-picker": "^56.0.18",
