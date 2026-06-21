@@ -4,18 +4,9 @@ import "react-native-url-polyfill/auto";
 import { env } from "./env";
 
 const ssrSafeStorage = {
-  getItem: (key: string) =>
-    typeof window === "undefined"
-      ? Promise.resolve(null)
-      : AsyncStorage.getItem(key),
-  setItem: (key: string, value: string) =>
-    typeof window === "undefined"
-      ? Promise.resolve()
-      : AsyncStorage.setItem(key, value),
-  removeItem: (key: string) =>
-    typeof window === "undefined"
-      ? Promise.resolve()
-      : AsyncStorage.removeItem(key),
+  getItem: (key: string) => AsyncStorage.getItem(key),
+  setItem: (key: string, value: string) => AsyncStorage.setItem(key, value),
+  removeItem: (key: string) => AsyncStorage.removeItem(key),
 };
 
 export const supabase = createClient(
