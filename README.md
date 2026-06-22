@@ -7,7 +7,7 @@ A mobile app for reporting and tracking maintenance issues. Built with Expo, Rea
 - Submit maintenance reports with title, location, items, categories, and photos
 - Track report status: **New**, **In Progress**, **Resolved**
 - Admin dashboard to view all reports, update statuses, and assign to team members
-- Role-based access — regular users see only their own reports
+- Role-based access - regular users see only their own reports
 - Photo uploads per report item
 
 ## Getting Started
@@ -61,7 +61,7 @@ components/           # Shared UI components
 
 ## Roles
 
-| Role  | Can do |
-|-------|--------|
-| User  | Submit reports, view own reports |
+| Role  | Can do                                                  |
+| ----- | ------------------------------------------------------- |
+| User  | Submit reports, view own reports                        |
 | Admin | View all reports, update status, assign to self, delete |
