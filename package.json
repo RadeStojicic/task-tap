@@ -19,13 +19,13 @@
     "@tamagui/react-native-web-internals": "^2.3.1",
     "base64-arraybuffer": "^1.0.2",
     "burnt": "^0.13.0",
-    "expo": "~55.0.26",
+    "expo": "~55.0.7",
     "expo-constants": "~55.0.16",
     "expo-image-picker": "^55.0.20",
     "expo-linking": "~55.0.15",
     "expo-router": "~55.0.16",
     "expo-status-bar": "~55.0.6",
-    "react": "19.2.0",
+    "react": "19.2.7",
     "react-native": "0.83.6",
     "react-native-svg": "^15.15.5",
     "react-native-url-polyfill": "^3.0.0",
@@ -35,5 +35,12 @@
     "@types/react": "~19.2.2",
     "typescript": "~5.9.2"
   },
-  "private": true
+  "private": true,
+  "pnpm": {
+    "peerDependencyRules": {
+      "allowedVersions": {
+        "expo-modules-core>react-native-worklets": "0.9.2"
+      }
+    }
+  }
 }
