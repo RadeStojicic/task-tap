@@ -1,6 +1,6 @@
 import { DefaultTheme, ThemeProvider } from "@react-navigation/native";
 import { useFonts } from "expo-font";
-import { SplashScreen, Stack, useRouter, useSegments } from "expo-router";
+import { SplashScreen, Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 import { Spinner, YStack } from "tamagui";
@@ -42,20 +42,6 @@ export default function RootLayout() {
 
 function RootLayoutNav() {
   const { session, initializing } = useAuth();
-  const segments = useSegments();
-  const router = useRouter();
-
-  useEffect(() => {
-    if (initializing) return;
-    const seg = segments[0];
-    const inPublic = seg === undefined || seg === "(auth)";
-
-    if (!session && !inPublic) {
-      router.replace("/");
-    } else if (session && inPublic) {
-      router.replace("/(tabs)");
-    }
-  }, [session, initializing, segments]);
 
   if (initializing) {
     return (
@@ -77,13 +63,19 @@ function RootLayoutNav() {
           contentStyle: { backgroundColor: "#ffffff" },
         }}
       >
-        <Stack.Screen name="index" options={{ headerShown: false }} />
-        <Stack.Screen name="(auth)" options={{ headerShown: false }} />
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen
-          name="report/[id]"
-          options={{ title: "Report details" }}
-        />
+        <Stack.Protected guard={!session}>
+          <Stack.Screen name="index" options={{ headerShown: false }} />
+          <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+        </Stack.Protected>
+
+        <Stack.Protected guard={!!session}>
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen
+            name="report/[id]"
+            options={{ title: "Report details" }}
+          />
+        </Stack.Protected>
+
         <Stack.Screen name="+not-found" options={{ title: "Not found" }} />
       </Stack>
     </ThemeProvider>
