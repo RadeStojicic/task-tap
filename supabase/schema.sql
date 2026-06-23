@@ -106,6 +106,10 @@ drop policy if exists profiles_select_admin on public.profiles;
 create policy profiles_select_admin on public.profiles
   for select using (public.is_admin());
 
+drop policy if exists profiles_insert_own on public.profiles;
+create policy profiles_insert_own on public.profiles
+  for insert with check (auth.uid() = id and role = 'user');
+
 drop policy if exists reports_select_own on public.reports;
 create policy reports_select_own on public.reports
   for select using (auth.uid() = reported_by);

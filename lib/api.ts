@@ -48,6 +48,20 @@ export async function fetchProfile(userId: string): Promise<Profile | null> {
   return rows[0] ?? null;
 }
 
+export async function createProfile(input: {
+  id: string;
+  email: string;
+  full_name: string | null;
+}): Promise<Profile> {
+  const res = await fetch(`${env.restUrl}/profiles`, {
+    method: "POST",
+    headers: await authHeaders({ Prefer: "return=representation" }),
+    body: JSON.stringify({ ...input, role: "user" }),
+  });
+  const rows = (await parse<Profile[]>(res)) ?? [];
+  return rows[0];
+}
+
 // reports
 export async function fetchReports(
   status?: ReportStatus,

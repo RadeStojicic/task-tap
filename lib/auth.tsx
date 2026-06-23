@@ -1,4 +1,4 @@
-import type { Session } from "@supabase/supabase-js";
+import type { Session, User } from "@supabase/supabase-js";
 import {
   createContext,
   useContext,
@@ -7,7 +7,7 @@ import {
   type ReactNode,
 } from "react";
 import { Profile } from "../types";
-import { fetchProfile } from "./api";
+import { createProfile, fetchProfile } from "./api";
 import { supabase } from "./supabase";
 
 interface AuthValue {
@@ -32,9 +32,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [profile, setProfile] = useState<Profile | null>(null);
   const [initializing, setInitializing] = useState(true);
 
-  async function loadProfile(userId: string) {
+  async function loadProfile(user: User) {
     try {
-      setProfile(await fetchProfile(userId));
+      let profile = await fetchProfile(user.id);
+      if (!profile) {
+        profile = await createProfile({
+          id: user.id,
+          email: user.email ?? "",
+          full_name: (user.user_metadata?.full_name as string) ?? null,
+        });
+      }
+      setProfile(profile);
     } catch (e) {
       console.warn("Failed to load profile", e);
       setProfile(null);
@@ -47,13 +55,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     supabase.auth.getSession().then(({ data }) => {
       if (!mounted) return;
       setSession(data.session);
-      if (data.session) loadProfile(data.session.user.id);
+      if (data.session) loadProfile(data.session.user);
       setInitializing(false);
     });
 
     const { data: sub } = supabase.auth.onAuthStateChange((_event, next) => {
       setSession(next);
-      if (next) loadProfile(next.user.id);
+      if (next) loadProfile(next.user);
       else setProfile(null);
     });
 
@@ -86,7 +94,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const refreshProfile = async () => {
-    if (session) await loadProfile(session.user.id);
+    if (session) await loadProfile(session.user);
   };
 
   return (
