@@ -122,14 +122,12 @@ export default function NewReportScreen() {
     }
     setSubmitting(true);
     try {
-      // 1. Create the report header
       const report = await createReport({
         title: title.trim(),
         location: location.trim() || null,
         reported_by: session.user.id,
       });
 
-      // 2. Upload photos in parallel, then bulk-insert all items in one POST
       const photoUrls = await Promise.all(
         items.map((it) =>
           it.photo
